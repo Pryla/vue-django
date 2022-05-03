@@ -1,0 +1,35 @@
+{
+  "name": "django-vue",
+  "version": "0.0.0",
+  "files": [
+    "dist/vite-lib.common.js"
+  ],
+  "main": "dist/vite-lib.common.js",
+  "module": "dist/vite-lib.es.js",
+  "exports": {
+    ".": {
+      "import": "./dist/vite-lib.es.js",
+      "require": "./dist/vite-lib.umd.js"
+    }
+  },
+  "scripts": {
+    "serve": "vite --host 0.0.0.0 --port 3000",
+    "preview": "vite preview --host 0.0.0.0 --port 5000",
+    "build": "vite build --mode development",
+    "deploy": "rm -Rf static && rm -Rf dist && npm run build && python manage.py collectstatic --no-input",
+    "server": "python manage.py migrate && python manage.py runserver 0.0.0.0:8000",
+    "watch": "watch \"npm run deploy\" src --wait=10 --interval=3 --ignoreDotFiles --ignoreUnreadable",
+    "localhost": "npm run server | npm run watch"
+  },
+  "dependencies": {
+    "pinia": "^2.0.0",
+    "vue": "^3.2.16",
+    "vue-router": "^4.0.12",
+    "watch": "^1.0.2"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^1.9.3",
+    "sass": "^1.43.4",
+    "vite": "^2.6.4"
+  }
+}
